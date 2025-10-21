@@ -9,8 +9,16 @@ export default {
     if (url.pathname.startsWith('/api/')) {
       if (request.method === 'POST') {
         try {
-          const data = await request.json().catch(() => ({}))
-          const fe_input = typeof data?.fe_input === 'string' ? data.fe_input : ''
+          const body: unknown = await request.json()
+          let fe_input = ''
+          if (
+            typeof body === 'object' &&
+            body !== null &&
+            'fe_input' in body &&
+            typeof (body as Record<string, unknown>).fe_input === 'string'
+          ) {
+            fe_input = (body as Record<string, unknown>).fe_input as string
+          }
           const isValidInput = (s: string) => {
             if (s.length >= 32) return false
             for (let i = 0; i < s.length; i++) {
