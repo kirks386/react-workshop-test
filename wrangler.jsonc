@@ -15,7 +15,10 @@
 	},
 	"vars": {
 		"ENV_DATA": "Workshop Demo Data!"
-	}
+	},
+	"kv_namespaces": [
+		{ "binding": "DATA_KV", "id": "bea4908dc42c44c9b5d9135cceb8e391" }
+	]
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement

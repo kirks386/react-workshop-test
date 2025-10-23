@@ -1,5 +1,6 @@
 interface Env {
   ENV_DATA: string
+  DATA_KV: KVNamespace
 }
 
 export default {
@@ -43,6 +44,9 @@ export default {
           }
 
           console.log('fe_input:', fe_input)
+          const value = await env.DATA_KV.get(fe_input, 'text')
+          console.log(value)
+          return Response.json({ name: value ?? 'Not Found' })
         } catch (err) {
           console.log('Failed to parse JSON body', err)
         }
